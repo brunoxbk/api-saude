@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # others
-    "chat"
+    "chat",
+    "socketio_app"
 ]
 
 MIDDLEWARE = [
