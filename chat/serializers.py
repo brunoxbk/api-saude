@@ -8,8 +8,16 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ['id', 'text', 'user', 'chat','created_at']
 
 
-class ChatSerializer(serializers.ModelSerializer):
+class ChatListSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True)
+    slug = serializers.ReadOnlyField(read_only=True)
     class Meta:
         model = Chat
-        fields = ['id', 'members', 'created_at', 'messages']
+        fields = ['id', 'members', 'messages', 'created_at', 'slug']
+
+class ChatDetailSerializer(serializers.ModelSerializer):
+    messages = MessageSerializer(many=True)
+    slug = serializers.ReadOnlyField(read_only=True)
+    class Meta:
+        model = Chat
+        fields = ['id', 'members', 'created_at', 'messages', 'slug']

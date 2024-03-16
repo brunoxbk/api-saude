@@ -20,7 +20,10 @@ class Chat(ClusterableModel):
         InlinePanel("messages", label="messages"),
     ]
 
-    
+    @property
+    def slug(self):
+        return f'chat-{self.id}'
+
 
     class Meta:
         db_table = "chats"
@@ -36,6 +39,7 @@ class Chat(ClusterableModel):
 class Message(models.Model):
     chat = ParentalKey(Chat, on_delete=models.CASCADE, related_name='messages')
     text = models.CharField(max_length=255)
+
     created_at = models.DateTimeField(
         "Criado em", editable=False, auto_now_add=True)
     updated_at = models.DateTimeField(

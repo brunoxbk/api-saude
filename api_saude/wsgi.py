@@ -14,7 +14,7 @@ import socketio
 
 from socketio_app.views import sio
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api_saude.settings.dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api_saude.settings")
 
 # application = get_wsgi_application()
 django_app = get_wsgi_application()
