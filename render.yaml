@@ -1,0 +1,22 @@
+databases:
+  - name: api_saude_db
+    plan: free
+    databaseName: api_saude
+    user: api_saude
+
+services:
+  - type: web
+    plan: free
+    name: api_saude
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn api_saude.asgi:application -k api_saude.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: api_saude
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
