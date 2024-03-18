@@ -11,3 +11,13 @@ services:
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn api_saude.asgi:application -k api_saude.workers.UvicornWorker"
+    envVars:
+      # - key: DATABASE_URL
+      #   fromDatabase:
+      #     name: fobi-db
+      #     property: connectionString
+      - key: SECRET_KEY
+        value: huehuehuehheu33
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
