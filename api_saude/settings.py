@@ -219,8 +219,8 @@ if DEBUG_MAIL:
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=False)
 EMAIL_HOST = config('EMAIL_HOST', cast=str, default='')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str, default='')
-EMAIL_PORT = config('EMAIL_PORT', cast=int, default='')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str, default=587)
+EMAIL_PORT = config('EMAIL_PORT', cast=int, default=587)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str, default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', cast=str, default='')
 
 # Wagtail settings
