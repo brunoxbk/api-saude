@@ -52,14 +52,6 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "rest_framework",
-    "rest_framework.authtoken",
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "corsheaders",
     "wagtail",
     "modelcluster",
     "taggit",
@@ -69,7 +61,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #
+    "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     # others
+    "corsheaders",
     "chat",
     "socketio_app"
 ]

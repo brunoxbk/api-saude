@@ -3,14 +3,11 @@ from chat.models import Chat, Message
 from chat.serializers import ChatListSerializer, ChatDetailSerializer, MessageSerializer
 async_mode = None
 
-import os, django
+import os
 import socketio
 
 basedir = os.path.dirname(os.path.realpath(__file__))
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "api_saude.settings")
 sio = socketio.Server(async_mode=async_mode)
-
-# django.setup()
 
 def background_thread():
     """Example of how to send server generated events to clients."""
