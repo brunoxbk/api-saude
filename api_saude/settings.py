@@ -25,13 +25,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 
-DEBUG_MAIL = os.environ.get("DEBUG_MAIL", default=True, cast=bool)
+DEBUG_MAIL = os.environ.get("DEBUG_MAIL", default=True)
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = os.environ.get(
-    "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
-)
+ALLOWED_HOSTS = ['*', ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
