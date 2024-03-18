@@ -20,7 +20,7 @@ BASE_DIR = PROJECT_DIR
 
 ON_RENDER = 'RENDER' in os.environ
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
