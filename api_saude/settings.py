@@ -16,7 +16,7 @@ import dj_database_url
 from decouple import config
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
+BASE_DIR = PROJECT_DIR
 
 ON_RENDER = 'RENDER' in os.environ
 
