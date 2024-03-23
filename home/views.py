@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets
 from .models import Category, PostPage
 from .serializers import CategorySerializer, PostPageSerializer
@@ -11,3 +12,11 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 class PostPageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = PostPage.objects.all()
     serializer_class = PostPageSerializer
+
+
+def home(request):
+    2/0
+
+    data = {"ok": "ok"}
+
+    return JsonResponse(data)

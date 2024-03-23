@@ -10,6 +10,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 from home.api import api_router, router
+from home.views import home
 
 urlpatterns = [
     path('api/v2/', api_router.urls),
@@ -36,7 +37,7 @@ urlpatterns = urlpatterns + [
     path("api/auth/", include("dj_rest_auth.urls")),
     path("api/auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/chats/", include(chat_urls)),
-    path("", include(wagtail_urls)),
+    path("", home),
    
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

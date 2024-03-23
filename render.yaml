@@ -10,7 +10,7 @@ services:
     name: api_saude
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn api_saude.asgi:application -k api_saude.workers.UvicornWorker"
+    startCommand: "python -m gunicorn api_saude.asgi:application"
     envVars:
       # - key: DATABASE_URL
       #   fromDatabase:

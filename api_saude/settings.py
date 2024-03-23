@@ -180,6 +180,10 @@ STATICFILES_FINDERS = [
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+
+if ON_RENDER:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 if DEBUG:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 else:
