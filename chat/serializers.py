@@ -15,6 +15,7 @@ class ChatListSerializer(serializers.ModelSerializer):
         model = Chat
         fields = ['id', 'members', 'messages', 'created_at', 'slug']
 
+
 class ChatDetailSerializer(serializers.ModelSerializer):
     messages = MessageSerializer(many=True)
     slug = serializers.ReadOnlyField(read_only=True)

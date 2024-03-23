@@ -85,6 +85,7 @@ def create_room(sid, name):
 
 @sio.event
 def find_room(sid, pk):
+    print(sid)
     chat = Chat.objects.get(pk=pk)
     chat.save()
     messages = chat.messages.all()

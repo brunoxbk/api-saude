@@ -29,6 +29,7 @@ DEBUG_MAIL = os.environ.get("DEBUG_MAIL", default=True)
 
 DEBUG = config("DEBUG", default=False, cast=bool)
 
+
 ALLOWED_HOSTS = ['*', ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -40,6 +41,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 INSTALLED_APPS = [
     "home",
     "search",
+    'wagtail.api.v2',
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -84,7 +86,8 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "allauth.account.middleware.AccountMiddleware"
+    "allauth.account.middleware.AccountMiddleware",
+    'django_currentuser.middleware.ThreadLocalUserMiddleware',
 ]
 
 CORS_ALLOW_ALL_ORIGINS=True
@@ -184,20 +187,23 @@ else:
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default storage settings, with the staticfiles storage updated.
-# See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    # ManifestStaticFilesStorage is recommended in production, to prevent
-    # outdated JavaScript / CSS assets being served from cache
-    # (e.g. after a Wagtail upgrade).
-    # See https://docs.djangoproject.com/en/5.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-    },
-}
+
+if ON_RENDER:
+
+    # Default storage settings, with the staticfiles storage updated.
+    # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        # ManifestStaticFilesStorage is recommended in production, to prevent
+        # outdated JavaScript / CSS assets being served from cache
+        # (e.g. after a Wagtail upgrade).
+        # See https://docs.djangoproject.com/en/5.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        },
+    }
 
 REST_AUTH = {
     'USE_JWT': True,
@@ -207,7 +213,10 @@ REST_AUTH = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    )
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
