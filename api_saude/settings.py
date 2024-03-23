@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     # others
     "corsheaders",
     "chat",
-    "socketio_app"
+    # "socketio_app"
 ]
 
 MIDDLEWARE = [
