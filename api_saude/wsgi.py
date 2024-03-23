@@ -16,9 +16,7 @@ django.setup()
 
 from django.core.wsgi import get_wsgi_application
 
-from socketio_app.views import sio
-
-
+from chat.views import sio
 
 
 # application = get_wsgi_application()

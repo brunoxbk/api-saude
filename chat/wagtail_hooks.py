@@ -3,7 +3,7 @@ from wagtail.snippets.views.snippets import SnippetViewSet
 from chat.models import Chat, Message
 from chat.serializers import ChatDetailSerializer, MessageSerializer
 from wagtail import hooks
-from socketio_app.socket import sio
+from chat.socket import sio
 
 class ChatViewSet(SnippetViewSet):
     model = Chat
