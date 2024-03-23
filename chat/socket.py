@@ -1,22 +1,15 @@
 
-from chat.models import Chat, Message
-from chat.serializers import ChatListSerializer, ChatDetailSerializer, MessageSerializer
-async_mode = None
-
 import os
 import socketio
+from chat.models import Chat, Message
+from chat.serializers import ChatListSerializer, ChatDetailSerializer, MessageSerializer
+
+async_mode = None
+
 
 basedir = os.path.dirname(os.path.realpath(__file__))
 sio = socketio.Server(async_mode=async_mode)
 
-def background_thread():
-    """Example of how to send server generated events to clients."""
-    count = 0
-    while True:
-        sio.sleep(10)
-        count += 1
-        sio.emit('my_response', {'data': 'Server generated event'},
-                 namespace='/test')
 
 # @sio.event
 # def my_event(sid, message):

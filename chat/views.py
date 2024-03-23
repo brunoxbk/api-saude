@@ -2,6 +2,10 @@ from chat.models import Chat
 from chat.serializers import ChatListSerializer, ChatDetailSerializer
 from rest_framework import generics
 from rest_framework.response import Response
+import socketio
+
+
+sio = socketio.Server(async_mode=None)
 
 
 class ChatList(generics.ListCreateAPIView):
