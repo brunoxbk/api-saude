@@ -181,16 +181,19 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 
-if not ON_RENDER:
-    if DEBUG:
-        STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-    else:
-        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# if not ON_RENDER:
+#     if DEBUG:
+#         STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+#     else:
+#         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-if ON_RENDER:
+if ON_RENDER:    
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     # Default storage settings, with the staticfiles storage updated.
     # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
@@ -206,9 +209,6 @@ if ON_RENDER:
             "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
         },
     }
-
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_AUTH = {
     'USE_JWT': True,
