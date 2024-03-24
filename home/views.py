@@ -15,7 +15,6 @@ class PostPageViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 def home(request):
-    2/0
 
     data = {"ok": "ok"}
 
