@@ -196,20 +196,33 @@ if ON_RENDER:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 else: 
-    # Default storage settings, with the staticfiles storage updated.
-    # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
-    STORAGES = {
-        "default": {
-            "BACKEND": "django.core.files.storage.FileSystemStorage",
-        },
-        # ManifestStaticFilesStorage is recommended in production, to prevent
-        # outdated JavaScript / CSS assets being served from cache
-        # (e.g. after a Wagtail upgrade).
-        # See https://docs.djangoproject.com/en/5.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
-        "staticfiles": {
-            "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-        },
-    }
+    # # Default storage settings, with the staticfiles storage updated.
+    # # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
+    # STORAGES = {
+    #     "default": {
+    #         "BACKEND": "django.core.files.storage.FileSystemStorage",
+    #     },
+    #     # ManifestStaticFilesStorage is recommended in production, to prevent
+    #     # outdated JavaScript / CSS assets being served from cache
+    #     # (e.g. after a Wagtail upgrade).
+    #     # See https://docs.djangoproject.com/en/5.0/ref/contrib/staticfiles/#manifeststaticfilesstorage
+    #     "staticfiles": {
+    #         "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    #     },
+    # }
+    
+    pass
+
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+    if DEBUG:
+        STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+    else:
+        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# print(STATIC_ROOT)
+# print(STATICFILES_DIRS)
 
 REST_AUTH = {
     'USE_JWT': True,
@@ -248,6 +261,8 @@ WAGTAILSEARCH_BACKENDS = {
         "BACKEND": "wagtail.search.backends.database",
     }
 }
+
+WAGTAIL_SITE_NAME = "Saúde Jovem"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

@@ -15,7 +15,5 @@ class PostPageViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 def home(request):
-
     data = {"ok": "ok"}
-
     return JsonResponse(data)
