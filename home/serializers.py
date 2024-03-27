@@ -35,6 +35,17 @@ class ImageSerializer(serializers.ModelSerializer):
         ]
 
 
+class ImageEmbSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Image
+        fields = [
+            "id",
+            "title",
+            "file"
+        ]
+
+
 class CategorySerializer(serializers.ModelSerializer):
     image = ImageSerializer()
     class Meta:
@@ -47,9 +58,19 @@ class CategorySerializer(serializers.ModelSerializer):
         ]
 
 
+class CategoryEmbSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            "id",
+            "name",
+            "slug"
+        ]
+
+
 class PostPageSerializer(serializers.ModelSerializer):
 
-    categories = CategorySerializer(many=True)
+    categories = CategoryEmbSerializer(many=True)
     
     class Meta:
         model = PostPage
